@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "name": "Wireless Bluetooth Headphones",
+      "description": "High-quality wireless headphones with noise cancellation and long battery life.",
+      "price": 129.99,
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1679513691485-711d030f7e94?q=80&w=1626&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 2,
+      "name": "Smart Fitness Watch",
+      "description": "Track your fitness goals with this smart watch that monitors heart rate, steps, and sleep.",
+      "price": 79.99,
+      "imageUrl": "https://images.unsplash.com/photo-1696688713460-de12ac76ebc6?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 3,
+      "name": "Portable Bluetooth Speaker",
+      "description": "Enjoy your favorite music anywhere with this compact and powerful Bluetooth speaker.",
+      "price": 49.99,
+      "imageUrl": "https://images.unsplash.com/photo-1558537348-c0f8e733989d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 4,
+      "name": "Ergonomic Office Chair",
+      "description": "Stay comfortable during long work hours with this ergonomic office chair.",
+      "price": 199.99,
+      "imageUrl": "https://images.unsplash.com/photo-1688578735972-b61ec274df7b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 5,
+      "name": "Stainless Steel Water Bottle",
+      "description": "Stay hydrated with this durable and eco-friendly stainless steel water bottle.",
+      "price": 24.99,
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1681284938505-62efa3494bf2?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+      {
+      "id": 6,
+      "name": "Mechanical Keyboard",
+      "description": "Enhance your typing experience with this responsive mechanical keyboard.",
+      "price": 89.99,
+      "imageUrl": "https://images.unsplash.com/photo-1595225386386-79c3543adbd9?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+      {
+      "id": 7,
+      "name": "Wireless Mouse",
+      "description": "A comfortable and precise wireless mouse for everyday use.",
+      "price": 34.99,
+      "imageUrl": "https://images.unsplash.com/photo-1707592691247-5c3a1c7ba0e3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+        {
+      "id": 8,
+      "name": "Backpack",
+      "description": "A durable and spacious backpack for all your needs.",
+      "price": 59.99,
+      "imageUrl": "https://images.unsplash.com/photo-1509762774605-f07235a08f1f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ]

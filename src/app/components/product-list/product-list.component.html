@@ -1,0 +1,65 @@
+
+  <app-navbar></app-navbar>
+
+  @defer () {
+    <div class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-8">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-4">
+          Discover Our Latest Products
+        </h1>
+        <p class="text-lg text-gray-600">
+          Explore a wide range of high-quality products tailored to your needs.
+        </p>
+
+        <span class="bg-amber-600 loading loading-dots loading-xl"></span>
+      </header>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+      @for (product of productList; track $index) {
+        
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <div class="aspect-w-4 aspect-h-3">
+            <img
+              [src]="product.imageUrl"
+              alt="Product Image"
+              class="object-cover"
+              width="7606"
+              height="5073"
+            />
+          </div>
+          <div class="p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2"> {{product.name}} </h2>
+            <p class="text-gray-600 text-sm mb-4">
+              {{product.description}}
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="text-lg font-bold text-gray-900"> {{'$' + product.price}} </span>
+              <a
+                [routerLink]="['/products', product.id]"
+                routerLinkActive="active"
+                class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        
+      }
+
+      </div>
+
+    </div>
+  </div>
+
+  }
+
+
+  <!-- @placeholder ( minimum 5s) {
+    <div class="bg-gray-100 min-h-screen flex justify-center justify-items-center text-4xl font-extrabold text-gray-800"><p>Please wait we are getting your products<span class="bg-gray-800 loading loading-dots loading-xl"></span></p>
+    
+    </div>
+    
+  } -->
+
+  
