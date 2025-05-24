@@ -23,6 +23,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
   totalProduct: number = (0);
   localProdArr: any = []
 
+
   constructor(){
     //  this.emptArray.push(this.cartItems)
   }
@@ -32,14 +33,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = String(this.route.snapshot.paramMap.get('id'));
     this.productsServices.getProductById(id).subscribe((product) => {
       this.product = product;
+      console.log('id for product details ', id);
     })
     console.log(id);
     console.log('Product from service' , this.product);
     this.addTotal()
-    this.getProdPrice();
+    // this.getProdPrice();
     // this.ngOnDestroy()
   }
 
@@ -66,26 +68,46 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
       const prod: any = this.cartService.addToCart(this.product);
       this.cartService.createCartItems(this.emptArray).subscribe((res: IModel[]) => {
         if(res){
-          alert('Added successfully')
+          this.getFeedback()
           this.addTotal()
     localStorage.setItem('total', JSON.stringify(this.total));
     // this.localProdArr.push(this.product);
   
 
-  let getLocalArr = JSON.parse(localStorage.getItem('product') || "[]");
-console.log('This is the typeof GetLocalArr' + typeof getLocalArr);
-  getLocalArr.unshift(this.product)
-  localStorage.setItem('product', JSON.stringify(getLocalArr));
+        let getLocalArr = JSON.parse(localStorage.getItem('product') || "[]");
+      console.log('This is the typeof GetLocalArr' + typeof getLocalArr);
+        getLocalArr.unshift(this.product)
+        localStorage.setItem('product', JSON.stringify(getLocalArr));
+      
+ }
+
+})
+
+ } 
+
+    // this.router.navigateByUrl('/cart')+  
+  }  
   
-        }
-      })
-      
-      
+  getFeedback(){
+    const feedback = document.getElementById("feedback");
+    const feedbackError = document.getElementById("feedbackError");
+
+    // if(feedback?.style.display === 'none'){
+      if (feedback) {
+        feedback.style.display = 'block';
+        feedback.classList.add('fade-in')
+        setTimeout(() => {
+                feedback.style.display = 'none'
+                feedback.classList.add('fade-out')
+              }, 3000);
+      }
       
 
-    }
-    this.router.navigateByUrl('/cart')
-  }    
+      
+    // }
+  }
+
+  
 
   // localStorage.setItem('product', JSON.stringify(this.product)) || [];
 
@@ -130,6 +152,9 @@ console.log('This is the typeof GetLocalArr' + typeof getLocalArr);
       }
     }
     
+    checkout(){
+      
+    }
   
 
   // getProductsDetails(){

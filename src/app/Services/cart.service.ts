@@ -35,6 +35,10 @@ export class CartService {
     return this.http.get(Environment.API_URL);
   }
 
+  // getLocalCart(){
+  //   return this.http.get(JSON.parse(localStorage.getItem('product') || "[]"));
+  // }
+
   // calculateTotal(){
   //   return this.cartItems()
   // }

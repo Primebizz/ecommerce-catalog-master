@@ -19,27 +19,31 @@ export class ProductService {
   products$ = this.productsSubject.asObservable();
 
   fetchProducts() {
-    this.http.get<IModel[]>(Environment.API_URL).subscribe((products) => {
+    this.http.get<IModel[]>(`${Environment.API_URL}products`).subscribe((products) => {
       this.productsSubject.next(products);
     });
   }
 
   getproduct(): Observable<IModel>{
-    return this.http.get<IModel>(Environment.API_URL);
+    return this.http.get<IModel>(`${Environment.API_URL}products`);
 }
 
 createProduct(obj: Model): Observable<Model[]>{
   return this.http.post<Model[]>('http://localhost:3000/product', obj);
 }
 
-  getProductById(id: number): Observable<IModel | undefined> {
+deleteProduct(id: string): Observable<IModel>{
+  return this.http.delete<IModel>(`${Environment.API_URL}product/${id}`)
+}
+
+  getProductById(id: string): Observable<IModel | undefined> {
     console.log('getProductById called with ID:', id);
 
     return this.products$.pipe(
       map((products) => {
         console.log('Products in map:', products); 
 
-        const foundProduct = products.find((product) => product.id === id);
+        const foundProduct = products.find((product) => product._id === id);
         console.log('Found product:', foundProduct); 
 
         return foundProduct;
