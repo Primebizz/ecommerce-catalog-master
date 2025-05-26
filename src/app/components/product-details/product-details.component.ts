@@ -1,4 +1,4 @@
-import { Component, inject, OnChanges, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IModel, Model } from '../../Interface/model';
@@ -21,7 +21,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
   cartItems: IModel[] = [];
   total = signal(0);
   totalProduct: number = (0);
-  localProdArr: any = []
+  localProdArr: any = [] 
+  productsServices = inject(ProductService);
+  cartService = inject(CartService)
+  router = inject(Router)
+
+  route = inject(ActivatedRoute)
 
 
   constructor(){
@@ -45,11 +50,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
     // this.ngOnDestroy()
   }
 
-  productsServices = inject(ProductService);
-  cartService = inject(CartService)
-  router = inject(Router)
-
-  route = inject(ActivatedRoute)
+ 
 
   getProdPrice(){
     const currentPrice = localStorage.getItem('total');

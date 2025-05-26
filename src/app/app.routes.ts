@@ -10,14 +10,19 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProdListTypeComponent } from './components/prod-list-type/prod-list-type.component';
+import { loginGuard } from './guard/login.guard';
 
 export const routes: Routes = [
 
     {
         path: '',
-        redirectTo: 'products',
+        redirectTo: 'home',
         pathMatch: 'full'
     },
+
+    { path: 'home', component: HomeComponent},
 
     {
         path: 'products',
@@ -29,6 +34,8 @@ export const routes: Routes = [
         component: ProductDetailsComponent
     },
 
+    { path: 'product/:type', component: ProdListTypeComponent},
+
    
     {
         path: 'cart',
@@ -37,7 +44,8 @@ export const routes: Routes = [
 
     {
         path: 'auth-page',
-        component: SignupLoginComponent
+        component: SignupLoginComponent,
+        canActivate: [userguardGuard]
     },
 
     {

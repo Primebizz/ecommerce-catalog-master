@@ -25,6 +25,10 @@ export class AuthServiceService {
     return this.http.get<ApiResponse>(`${Environment.API_URL}profile`)
   }
 
+  updateUser(id: string, obj: User): Observable<ApiResponse>{
+    return this.http.patch<ApiResponse>(`${Environment.API_URL}user/${id}`, obj)
+  }
+
   isLoggedIn() {
     return !!localStorage.getItem('token');
   }

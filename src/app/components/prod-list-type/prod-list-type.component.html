@@ -1,0 +1,53 @@
+<div class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+
+
+@if (productList) {
+      @for (product of productList; track $index) {
+        
+        <div 
+        
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+  <!-- Image wrapper with delete button -->
+  <div class="relative aspect-video">
+    <img
+      [src]="product.imageUrl"
+      alt="Product Image"
+      class="object-cover w-full h-full"
+    />
+    <button
+      (click)="deleteProd(product._id)"
+      class="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-b-4xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+      aria-label="Remove image"
+    >
+      <!-- you can swap in an “X” icon SVG if you like -->
+      &times;
+    </button>
+  </div>
+
+  <div class="p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ product.name }}</h2>
+    <p class="text-gray-600 text-sm mb-4 w-max overflow-hidden">{{ product.description }}</p>
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-bold text-gray-900">{{ '$' + product.price }}</span>
+      <a
+        [routerLink]="['/products', product._id]"
+        routerLinkActive="active"
+        class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300"
+      >
+        View Details
+      </a>
+    </div>
+  </div>
+</div>
+        
+      }
+}
+    
+
+      </div>
+
+    </div>
+  </div>

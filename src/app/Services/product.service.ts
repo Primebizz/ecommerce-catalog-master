@@ -1,4 +1,4 @@
-import { IModel, Model } from './../Interface/model';
+import { ICat, IModel, Model } from './../Interface/model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../Environment/environment';
@@ -50,6 +50,25 @@ deleteProduct(id: string): Observable<IModel>{
       })
     )
       }
+
+    getProductByCategoriesAndType(type: string): Observable<IModel[]> {
+        console.log('getProductByCategoriesAndType called with type:', type);
+    
+        return this.products$.pipe(
+          map((products) => {
+            console.log('Products in map:', products); 
+    
+            const prodTypes = products.filter((product) => product.type === type);
+            console.log('Found products:', prodTypes); 
+    
+            return prodTypes;
+          })
+        );
+    }
+
+    getCategory(){
+      return this.http.get<ICat[]>(`${Environment.CATEGORY_URL}`);
+    }
     
   }
 

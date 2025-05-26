@@ -1,0 +1,44 @@
+
+ [
+      {
+        "name": "Electronics",
+        "type": ["Mobile Phones", "Laptops", "Cameras", "Headphones", "Wearables"]
+      },
+      {
+        "name": "Fashion",
+        "type": ["Men's Clothing", "Women's Clothing", "Accessories", "Footwear", "Jewelry"]
+      },
+      {
+        "name": "Home & Garden",
+        "type": ["Furniture", "Decor", "Kitchen", "Garden Tools", "Bedding"]
+      },
+      {
+        "name": "Beauty",
+        "type": ["Skincare", "Makeup", "Fragrance", "Haircare", "Bath & Body"]
+      },
+      {
+        "name": "Sports",
+        "type": ["Fitness Equipment", "Outdoor Gear", "Athleisure", "Team Sports", "Cycling"]
+      },
+      {
+        "name": "Toys & Games",
+        "type": ["Action Figures", "Board Games", "Puzzles", "Dolls", "Educational Toys"]
+      },
+      {
+        "name": "Books",
+        "type": ["Fiction", "Non-fiction", "Children's Books", "Comics", "Educational"]
+      },
+      {
+        "name": "Health & Wellness",
+        "type": ["Supplements", "Personal Care", "Wellness Devices", "First Aid", "Nutrition"]
+      },
+      {
+        "name": "Automotive",
+        "type": ["Car Accessories", "Motorcycle Gear", "Tools & Equipment", "Tires", "Oils & Fluids"]
+      },
+      {
+        "name": "Groceries",
+        "type": ["Fresh Produce", "Pantry Staples", "Beverages", "Snacks", "Organic"]
+      }
+    ]
+ 
