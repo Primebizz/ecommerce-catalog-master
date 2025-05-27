@@ -1,68 +1,97 @@
 import { Routes } from '@angular/router';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { CartComponent } from './components/cart/cart.component';
-import { SignupLoginComponent } from './components/signup-login/signup-login.component';
-import { UserDashComponent } from './components/user-dash/user-dash.component';
-import { userguardGuard } from './guard/userguard.guard';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { HomeComponent } from './components/home/home.component';
-import { ProdListTypeComponent } from './components/prod-list-type/prod-list-type.component';
-import { loginGuard } from './guard/login.guard';
+import { userguardGuard } from './core/guard/userguard.guard';
+import { loginGuard }    from './core/guard/login.guard';
 
 export const routes: Routes = [
 
-    {
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./features/home/home/home.component').then(m => m.HomeComponent)
+  },
+
+ 
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('./features/products/product-list/product-list.component')
+        .then(m => m.ProductListComponent)
+  },
+
+ 
+  {
+    path: 'products/:id',
+    loadComponent: () =>
+      import('./features/products/product-details/product-details.component')
+        .then(m => m.ProductDetailsComponent)
+  },
+
+  
+  {
+    path: 'product/:type',
+    loadComponent: () =>
+      import('./features/products/prod-list-type/prod-list-type.component')
+        .then(m => m.ProdListTypeComponent)
+  },
+
+
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('./features/cart/cart/cart.component').then(m => m.CartComponent)
+  },
+
+  
+  {
+    path: 'auth-page',
+    loadComponent: () =>
+      import('./features/auth/signup-login/signup-login.component')
+        .then(m => m.SignupLoginComponent),
+    // canActivate: [userguardGuard]
+  },
+
+  
+  {
+    path: 'dashboard',
+    loadComponent: () =>
+      import('./features/auth/layout/layout.component').then(m => m.LayoutComponent),
+    canActivate: [userguardGuard],
+    children: [
+      {
         path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-    },
-
-    { path: 'home', component: HomeComponent},
-
-    {
-        path: 'products',
-        component: ProductListComponent
-    },
-
-    {
-        path: 'products/:id',
-        component: ProductDetailsComponent
-    },
-
-    { path: 'product/:type', component: ProdListTypeComponent},
-
-   
-    {
-        path: 'cart',
-        component: CartComponent
-    },
-
-    {
-        path: 'auth-page',
-        component: SignupLoginComponent,
-        canActivate: [userguardGuard]
-    },
-
-    {
-        path:'',
-        component: LayoutComponent,
-        canActivate: [userguardGuard],
-        children: [{
-            path: 'dashboard',
-            component: UserDashComponent,
-            children: [
-                        { path: 'profile', component: ProfileComponent},
-                        { path: 'orders', component: OrdersComponent},
-                        { path: 'settings', component: SettingsComponent},
-            ]
-        },
-
+        loadComponent: () =>
+          import('./features/auth/user-dash/user-dash.component')
+            .then(m => m.UserDashComponent)
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./features/auth/profile/profile.component')
+            .then(m => m.ProfileComponent)
+      },
+      {
+        path: 'orders',
+        loadComponent: () =>
+          import('./features/orders/orders/orders.component')
+            .then(m => m.OrdersComponent)
+      },
+      {
+        path: 'settings',
+        loadComponent: () =>
+          import('./features/auth/settings/settings.component')
+            .then(m => m.SettingsComponent)
+      }
     ]
-    },
-    { path: "**", component: PageNotFoundComponent}
+  },
+
+
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./layouts/page-not-found/page-not-found.component')
+        .then(m => m.PageNotFoundComponent)
+  }
 ];

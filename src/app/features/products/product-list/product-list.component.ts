@@ -1,7 +1,7 @@
-import { ProductService } from './../../Services/product.service';
+import { ProductService } from '../../../core/Services/product.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { NavbarComponent } from "../navbar/navbar.component";
-import { IModel, Model } from '../../Interface/model';
+import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
+import { IModel, Model } from '../../../Interface/model';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 

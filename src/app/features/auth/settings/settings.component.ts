@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { AuthServiceService } from '../../Services/auth-service.service';
-import { ApiResponse } from '../../Interface/model';
+import { AuthServiceService } from '../../../core/Services/auth-service.service';
+import { ApiResponse } from '../../../Interface/model';
 
 @Component({
   selector: 'app-settings',

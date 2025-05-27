@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ProdListTypeComponent } from '../prod-list-type/prod-list-type.component';
-import { ICat, IModel } from '../../Interface/model';
-import { ProductService } from '../../Services/product.service';
+import { ProdListTypeComponent } from '../../products/prod-list-type/prod-list-type.component';
+import { ICat, IModel } from '../../../Interface/model';
+import { ProductService } from '../../../core/Services/product.service';
 
 @Component({
   selector: 'app-home',

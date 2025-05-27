@@ -1,10 +1,10 @@
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Component, ElementRef, inject, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../../../layouts/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
-import { ApiResponse, User } from '../../Interface/model';
-import { AuthServiceService } from '../../Services/auth-service.service';
+import { ApiResponse, User } from '../../../Interface/model';
+import { AuthServiceService } from '../../../core/Services/auth-service.service';
 
 @Component({
   selector: 'app-signup-login',

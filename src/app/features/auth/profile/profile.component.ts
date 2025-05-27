@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angular/core';
 import { first } from 'rxjs';
-import { AuthServiceService } from '../../Services/auth-service.service';
-import { ApiResponse, IUser, User } from '../../Interface/model';
+import { AuthServiceService } from '../../../core/Services/auth-service.service';
+import { ApiResponse, IUser, User } from '../../../Interface/model';
 import { FormsModule } from '@angular/forms';
 
 @Component({

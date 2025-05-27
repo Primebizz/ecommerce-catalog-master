@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { IModel } from '../../Interface/model';
-import { CartService } from '../../Services/cart.service';
-import { ProductService } from '../../Services/product.service';
-import { NavbarComponent } from "../navbar/navbar.component";
+import { IModel } from '../../../Interface/model';
+import { CartService } from '../../../core/Services/cart.service';
+import { ProductService } from '../../../core/Services/product.service';
+import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
 import { Router } from '@angular/router';
 
 @Component({

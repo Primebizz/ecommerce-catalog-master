@@ -1,7 +1,7 @@
-import { routes } from './../../app.routes';
+import { routes } from '../../../app.routes';
 import { Component, inject, OnInit } from '@angular/core';
-import { IModel } from '../../Interface/model';
-import { ProductService } from '../../Services/product.service';
+import { IModel } from '../../../Interface/model';
+import { ProductService } from '../../../core/Services/product.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

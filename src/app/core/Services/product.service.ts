@@ -1,7 +1,7 @@
-import { ICat, IModel, Model } from './../Interface/model';
+import { ICat, IModel, Model } from '../../Interface/model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Environment } from '../Environment/environment';
+import { Environment } from '../../Environment/environment';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 

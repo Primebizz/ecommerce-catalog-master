@@ -1,10 +1,10 @@
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { ProductService } from '../../Services/product.service';
+import { ProductService } from '../../../core/Services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IModel, Model } from '../../Interface/model';
-import { CartService } from '../../Services/cart.service';
-import { CartComponent } from "../cart/cart.component";
-import { NavbarComponent } from "../navbar/navbar.component";
+import { IModel, Model } from '../../../Interface/model';
+import { CartService } from '../../../core/Services/cart.service';
+import { CartComponent } from "../../cart/cart/cart.component";
+import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

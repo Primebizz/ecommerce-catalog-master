@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { IModel, Model } from '../Interface/model';
-import { Environment } from '../Environment/environment';
+import { IModel, Model } from '../../Interface/model';
+import { Environment } from '../../Environment/environment';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
