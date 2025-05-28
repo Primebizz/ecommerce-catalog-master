@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [NavbarComponent],
+  imports: [],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })

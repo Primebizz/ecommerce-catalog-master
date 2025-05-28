@@ -66,8 +66,18 @@ deleteProduct(id: string): Observable<IModel>{
         );
     }
 
-    getCategory(){
+    getCategory(): Observable<ICat[]>{
       return this.http.get<ICat[]>(`${Environment.CATEGORY_URL}`);
+    }
+
+    getCategoryByType(name: string): Observable<ICat[]> {
+      return this.getCategory().pipe(
+        map(categories => {
+         categories = categories.filter(category => category.name === name);
+          console.log('Filtered categories:', categories);
+          return categories;
+        })
+      );
     }
     
   }

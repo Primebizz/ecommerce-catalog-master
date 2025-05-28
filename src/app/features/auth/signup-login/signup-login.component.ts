@@ -8,7 +8,7 @@ import { AuthServiceService } from '../../../core/Services/auth-service.service'
 
 @Component({
   selector: 'app-signup-login',
-  imports: [FormsModule, ReactiveFormsModule, RouterOutlet, NavbarComponent, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterOutlet, CommonModule],
   templateUrl: './signup-login.component.html',
   styleUrl: './signup-login.component.css'
 })

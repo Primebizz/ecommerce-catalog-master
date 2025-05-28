@@ -121,25 +121,39 @@
     <!-- Category -->
     <div class="flex flex-col p-2">
       <label for="category" class="mb-2 text-sm font-medium text-gray-600">Category</label>
-      <input
+      <select
+      (change)="getCategoryType($any($event.target).value)"
         id="category"
         type="text"
         name="category"
         [(ngModel)]="addproducts.category"
         class="border text-gray-800 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-      />
+        required>
+        <option value="" disabled selected>Select Category</option>
+        @for (item of category$ | async; track $index) {
+          <option [value]="item.name">{{item.name}}</option>
+        }
+        
+        </select>
     </div>
 
     <!-- Types -->
      <div class="flex flex-col p-2">
       <label for="category" class="mb-2 text-sm font-medium text-gray-600">Types</label>
-      <input
+      <select
         id="category"
         type="text"
         name="category"
         [(ngModel)]="addproducts.type"
         class="border text-gray-800 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-      />
+        required>
+        <option value="" disabled selected>Select Type</option>
+           @for (type of typeList ; track $index) {
+            @for (t of type.type; track $index) {
+          <option [value]="t">{{t}}</option>
+            }
+        }
+        </select>
     </div>
 
     <!-- Stock -->

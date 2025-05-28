@@ -1,13 +1,15 @@
 import { ProductService } from '../../../core/Services/product.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
-import { IModel, Model } from '../../../Interface/model';
+import { ICat, IModel, Model } from '../../../Interface/model';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
-  imports: [NavbarComponent, RouterLink, RouterLinkActive, FormsModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, AsyncPipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -15,8 +17,14 @@ export class ProductListComponent implements OnInit{
 
   productList: IModel [] = []
   addproducts: Model = new Model();
-
+  
   productService = inject(ProductService)
+
+  category$: Observable<ICat[]> = this.productService.getCategory();
+
+  typeList: ICat[] = []
+
+  
 
   getAllProducts(){
     this.productService.getproduct().subscribe((products: any) => {
@@ -34,6 +42,7 @@ export class ProductListComponent implements OnInit{
       if(res){
         alert('Product Added')
         this.getAllProducts()
+        this.addproducts = new Model(); // Reset the form
       }
       
     })
@@ -46,6 +55,12 @@ export class ProductListComponent implements OnInit{
         alert('Product Remove Successfully')
         this.getAllProducts()
       }
+    })
+  }
+
+  getCategoryType(name: string){
+    this.productService.getCategoryByType(name).subscribe((res: ICat[]) => {
+  this.typeList = res
     })
   }
 }
