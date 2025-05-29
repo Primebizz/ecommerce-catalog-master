@@ -26,6 +26,8 @@ export class SignupLoginComponent implements OnInit{
 
   authService = inject(AuthServiceService)
 
+  showPassword: boolean = false;
+
   router = inject(Router) 
     
   @ViewChild('confirmPassword') myConPassword: ElementRef | undefined;
@@ -156,7 +158,7 @@ export class SignupLoginComponent implements OnInit{
           this.router.navigateByUrl('dashboard');
         }, 3000);
         
-      }else{
+      }if(!resStatus){
         
         const p = document.createElement('p');
         console.log(`This is a failed message ${res.message}`);

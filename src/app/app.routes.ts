@@ -44,6 +44,13 @@ export const routes: Routes = [
       import('./features/cart/cart/cart.component').then(m => m.CartComponent)
   },
 
+
+  {
+    path: 'reviews',
+    loadComponent: () =>
+      import('./features/products/reviews/reviews.component').then(m => m.ReviewsComponent)
+  },
+
   
   {
     path: 'auth-page',

@@ -69,6 +69,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
       const prod: any = this.cartService.addToCart(this.product);
       this.cartService.createCartItems(this.emptArray).subscribe((res: IModel[]) => {
         if(res){
+      const p = document.createElement('p');
+      p.innerText = 'Product Added to Cart';
+      p.className = 'bg-green-200 text-green-800 py-2 px-4 rounded-md mt-2'; 
+      document.getElementById('toast')?.prepend(p);
+  
+      setTimeout(() => {
+        p.style.display = 'none';
+      }, 3000);
+          this.showToast()
           this.getFeedback()
           this.addTotal()
     localStorage.setItem('total', JSON.stringify(this.total));
@@ -156,6 +165,31 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
     checkout(){
       
     }
+
+    showToast(){
+      const toast = document.getElementById("toastt");
+      if (toast) {
+        toast.style.display = 'block';
+        toast.classList.add('fade-in');
+        setTimeout(() => {
+          toast.style.display = 'none';
+          toast.classList.add('fade-out');
+        }, 3000);
+      }
+    }
+
+      addToWishlist(){
+        const wishlist = document.getElementById("wishlist");
+        if (wishlist) {
+          wishlist.style.display = 'block';
+          wishlist.classList.add('fade-in');
+          setTimeout(() => {
+            wishlist.style.display = 'none';
+            wishlist.classList.add('fade-out');
+          }, 3000);
+        }
+      }
+    
   
 
   // getProductsDetails(){

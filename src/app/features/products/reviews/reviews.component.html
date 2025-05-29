@@ -1,0 +1,59 @@
+<!-- review-page.component.html -->
+<main class="bg-gray-50 min-h-screen p-8">
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h1 class="text-2xl font-bold text-gray-800 mb-4">Customer Reviews</h1>
+
+    <!-- Reviews List -->
+    <section *ngIf="reviews?.length; else noReviews">
+      <div *ngFor="let r of reviews" class="border-b border-gray-200 py-4">
+        <div class="flex items-center mb-2">
+          <span class="font-semibold text-gray-800 mr-2">{{ r.name }}</span>
+          <span class="text-gray-400">
+            <ng-container *ngFor="let star of [1,2,3,4,5]">
+              <i class="" [ngClass]="star <= r.rating ? `fas fa-${star}` : `far fa-${star}`"></i>
+            </ng-container>
+          </span>
+          <span class="text-sm text-gray-500 ml-auto">{{ r.date | date:'mediumDate' }}</span>
+        </div>
+        <p class="text-gray-700">{{ r.comment }}</p>
+      </div>
+    </section>
+    <ng-template #noReviews>
+      <p class="text-gray-600 py-4">Be the first to leave a review!</p>
+    </ng-template>
+
+    <!-- Review Form -->
+    <div class="mt-6">
+      <h2 class="text-xl font-semibold text-gray-800 mb-3">Write a Review</h2>
+      <form [formGroup]="reviewFormG" (ngSubmit)="submitReview()" class="space-y-4">
+        <!-- Rating Selector -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Your Rating</label>
+          <select formControlName="rating" class="w-24 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-800">
+            <option value="" disabled>Select</option>
+            <option *ngFor="let r of [5,4,3,2,1]" [value]="r">{{ r }} Star</option>
+          </select>
+          <div *ngIf="reviewFormG.controls['rating'].invalid && (reviewFormG.controls['rating'].touched || reviewFormG.controls['rating'].dirty)" class="text-red-500 text-sm mt-1">
+            Rating is required.
+          </div>
+        </div>
+
+        <!-- Comment Textarea -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Your Comment</label>
+          <textarea formControlName="comment" rows="4" placeholder="Share your thoughts..."
+                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"></textarea>
+          <div *ngIf="reviewFormG.controls['comment'].invalid && (reviewFormG.controls['comment'].touched || reviewFormG.controls['comment'].dirty)" class="text-red-500 text-sm mt-1">
+            Comment must be at least 10 characters.
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="reviewFormG.invalid"
+                class="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition disabled:bg-gray-300 disabled:text-gray-600">
+          Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
