@@ -5,10 +5,11 @@ import { ProductService } from '../../../core/Services/product.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RatingComponent } from '../../../shared/rating/rating.component';
 
 @Component({
   selector: 'app-prod-list-type',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, RatingComponent],
   templateUrl: './prod-list-type.component.html',
   styleUrl: './prod-list-type.component.css'
 })
@@ -50,5 +51,11 @@ export class ProdListTypeComponent implements OnInit{
       console.log('Array of product gotten ', product);
     })
   }
+
+  getAverageRating(reviews: { rating: number }[]): number {
+  if (!reviews || reviews.length === 0) return 0;
+  const sum = reviews.reduce((acc, curr) => acc + curr.rating, 0);
+  return sum / reviews.length;
+}
 
 }

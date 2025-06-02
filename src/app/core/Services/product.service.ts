@@ -1,4 +1,4 @@
-import { ICat, IModel, Model } from '../../Interface/model';
+import { ICat, IModel, Model, Reviews } from '../../Interface/model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../Environment/environment';
@@ -78,6 +78,16 @@ deleteProduct(id: string): Observable<IModel>{
           return categories;
         })
       );
+    }
+
+    addProductReview(productId: string, review: Reviews): Observable<Reviews> {
+        return this.http.post<Reviews>(`${Environment.API_URL}products/${productId}/reviews`, review);
+    }
+    getProductReviews(productId: string): Observable<Reviews[]> {
+        return this.http.get<Reviews[]>(`${Environment.API_URL}products/${productId}/reviews`);
+    }
+    updateProduct(id: string, obj: Model): Observable<IModel> {
+        return this.http.patch<IModel>(`${Environment.API_URL}product/${id}`, obj);
     }
     
   }

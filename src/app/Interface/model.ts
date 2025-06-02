@@ -6,6 +6,8 @@ export interface IModel {
     imageUrl: string,
     category: string,
     type: string,
+    reviews: Reviews[];
+    totalNoReviews?: number;
     stock: boolean
 }
 
@@ -18,10 +20,12 @@ export class Model {
     imageUrl: string;
     category: string;
     type: string;
+    reviews: Reviews[];
+    totalNoReviews?: number;
     stock: boolean
 
 
-    constructor(){
+    constructor(init?: Partial<Model>) {
     // this.id = 0;
     this.name = '';
     this.description = '';
@@ -29,9 +33,18 @@ export class Model {
     this.imageUrl = '';
     this.category = '';
     this.type = '';
+    this.reviews = init?.reviews ?? [];
+    this.totalNoReviews = init?.reviews ? init.reviews.length : 0;
     this.stock = false;
 
     }
+}
+
+export interface Reviews{
+  author: string;
+  rating: number;
+  comment: string;
+  date: Date;
 }
 
 export interface Address {

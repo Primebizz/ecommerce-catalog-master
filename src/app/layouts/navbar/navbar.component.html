@@ -5,8 +5,8 @@
       <div class="flex items-center space-x-4">
         <a routerLink="/products" routerLinkActive="active" class="text-gray-300 active:text-white hover:text-white">Products</a>
         <a routerLink="/cart" routerLinkActive="active" class="text-gray-300 hover:text-white">Cart</a>
-        <a routerLink="/auth-page" routerLinkActive="active" class="text-gray-300 hover:text-white" *ngIf="!userService.isLoggedIn()">Login/Signup</a>
-        <a routerLink="/dashboard" routerLinkActive="active" class="text-gray-300 hover:text-white" *ngIf="userService.isLoggedIn()">Dashboard</a>
+        <a routerLink="/auth-page" routerLinkActive="active" class="text-gray-300 hover:text-white text-2xl" *ngIf="!userService.isLoggedIn()"><fa-icon [icon]="faLogin" /></a>
+        <a routerLink="/dashboard" routerLinkActive="active" class="text-gray-300 hover:text-white text-2xl" *ngIf="userService.isLoggedIn()"><fa-icon [icon]="faDash" /></a>
       </div>
     </div>
   </nav>

@@ -46,7 +46,7 @@ export const routes: Routes = [
 
 
   {
-    path: 'reviews',
+    path: 'product/:id/reviews',
     loadComponent: () =>
       import('./features/products/reviews/reviews.component').then(m => m.ReviewsComponent)
   },
