@@ -1,6 +1,7 @@
+import { CartItem } from './../../../Interface/model';
 import { routes } from '../../../app.routes';
 import { Component, inject, OnInit } from '@angular/core';
-import { IModel } from '../../../Interface/model';
+import { ICat, IModel } from '../../../Interface/model';
 import { ProductService } from '../../../core/Services/product.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -22,15 +23,27 @@ export class ProdListTypeComponent implements OnInit{
   router = inject(Router)
 
   route = inject(ActivatedRoute)
+  
+    category: ICat[] = [];
+
+    cartItems: any = {
+
+    }
+  
+    getCategory(){
+      this.productsServices.getCategory().subscribe((res: ICat[]) => {
+        this.category = res
+      })
+    }
 
 
   ngOnInit(): void {
     const type = String(this.route.snapshot.paramMap.get('type'));
     this.productsServices.getProductByCategoriesAndType(type).subscribe((product) => {
       this.productList = product;
-      console.log('id for product details ', type);
     })
     this.getAllProducts()
+    this.getCategory()
   }
 
     deleteProd(id: string){
@@ -47,8 +60,6 @@ export class ProdListTypeComponent implements OnInit{
      const type = String(this.route.snapshot.paramMap.get('type'));
     this.productsServices.getProductByCategoriesAndType(type).subscribe((product) => {
       this.productList = product;
-      console.log('Type of product gotten ', type);
-      console.log('Array of product gotten ', product);
     })
   }
 
@@ -56,6 +67,14 @@ export class ProdListTypeComponent implements OnInit{
   if (!reviews || reviews.length === 0) return 0;
   const sum = reviews.reduce((acc, curr) => acc + curr.rating, 0);
   return sum / reviews.length;
+}
+
+getCartTotal(){
+
+}
+
+checkout(){
+
 }
 
 }

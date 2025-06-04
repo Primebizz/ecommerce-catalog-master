@@ -15,6 +15,7 @@
           <span class="text-sm text-gray-500 ml-auto">{{ r.date | date:'mediumDate' }}</span>
         </div>
         <p class="text-gray-700">{{ r.comment }}</p>
+        <button class="bg-red-300 text-gray-100 border rounded-lg p-1" (click)="deleteReview(r._id)">Remove Review</button>
       </div>
       }
      

@@ -41,6 +41,7 @@ export class Model {
 }
 
 export interface Reviews{
+  _id: string;
   author: string;
   rating: number;
   comment: string;
@@ -180,4 +181,33 @@ export class ApiResponse{
     this.token = '';
     this.user = new User();
     }
+}
+
+export interface LineItem {
+  productId: string;
+  name: string;
+  imageUrl: string;
+  unitPrice: number;
+  quantity: number;
+}
+
+export interface Order {
+  _id: string;
+  userId: string;
+  items: LineItem[];
+  shippingAddress: {
+    line1: string;
+    city: string;
+    state: string;
+    zip: string;
+    country: string;
+  };
+  paymentMethod: string; // e.g. “Credit Card”
+  subtotal: number;
+  tax: number;
+  shippingFee: number;
+  total: number;
+  status: 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
+  createdAt: string;
+  updatedAt: string;
 }

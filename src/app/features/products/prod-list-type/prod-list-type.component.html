@@ -1,64 +1,170 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto p-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  <div class="container mx-auto p-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Left Sidebar: Categories & Home Aside -->
 
+    <aside class="lg:block bg-white p-6 rounded-xl shadow space-y-8 sticky top-8 h-[calc(100vh-4rem)] z-10">
+      <div>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Categories</h2> 
+        @for (cat of category; track $index) {
+          <ul class="space-y-2">
+                   <li class="relative group">
+            <button class="w-full text-left px-4 py-2 rounded hover:bg-indigo-100 text-gray-800">{{cat.name}}</button>
+            <div class="absolute left-full top-0 ml-1 hidden group-hover:block bg-white border rounded-lg shadow-lg w-48">
+                @for (item of cat.type; track $index) {
+            <ul class="divide-y">
+                <li class="px-4 py-2 hover:bg-gray-100 text-gray-800 cursor-pointer">
+                  <a [routerLink]="['/product', item]" (click)="getAllProducts()" class="block">{{item}}</a>
+                </li>
+            </ul>
+                }
 
+            </div>
+          </li>   
+          </ul>   
 
-@if (productList) {
-      @for (product of productList; track $index) {
+            }
         
-        <div 
-        
-        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-  <!-- Image wrapper with delete button -->
-  <div class="relative aspect-video">
-    <img
-      [src]="product.imageUrl"
-      alt="Product Image"
-      class="object-cover w-full h-full"
-    />
-    <button
-      (click)="deleteProd(product._id)"
-      class="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-b-4xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-      aria-label="Remove image"
-    >
-      <!-- you can swap in an “X” icon SVG if you like -->
-      &times;
-    </button>
-  </div>
-
-  <div class="p-6">
-    <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ product.name }}</h2>
-    <p class="text-gray-600 text-sm mb-4 w-max overflow-hidden">{{ product.description }}</p>
-    <div>
-      
-      <div class="flex justify-between items-center">
-        <span class="text-lg font-bold text-gray-900">{{ '$' + product.price }}</span>
-      <a
-        [routerLink]="['/products', product._id]"
-        routerLinkActive="active"
-        class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300"
-      >
-        View Details
-      </a>
-      
+      <!-- Filter & Ad unchanged -->
+      <div>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Filter By</h2>
+        <!-- filter markup -->
       </div>
-      <div class="flex justify-between">
-      <a [routerLink]="['/product', product._id,'reviews']">
-        <app-rating [rating]="getAverageRating(product.reviews)" [readonly]="true" />
-      </a>
-      <p class="text-gray-800 text-2xl">({{ product.totalNoReviews}})</p>
+      <div class="bg-indigo-100 border-2 border-dashed border-indigo-300 p-4 text-center text-gray-800 rounded">
+        <p class="font-medium">Your Ad Here</p>
       </div>
 
-    </div>
-  </div>
-</div>
-        
-      }
-}
-    
-
+      <!-- Filter -->
+      <div>
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Filter By</h2>
+        <div class="space-y-3">
+          <div>
+            <label class="block text-sm font-medium text-gray-800">Price Range</label>
+            <input type="range" min="0" max="500" class="w-full mt-1" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800">Rating</label>
+            <select class="mt-1 block w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option class="text-gray-800">★ 4 & up</option>
+              <option class="text-gray-800">★ 3 & up</option>
+              <option class="text-gray-800">★ 2 & up</option>
+              <option class="text-gray-800">★ 1 & up</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800">Availability</label>
+            <div class="mt-1 space-y-1">
+              <label class="inline-flex items-center text-gray-800">
+                <input type="checkbox" class="form-checkbox" />
+                <span class="ml-2">In Stock</span>
+              </label>
+              <label class="inline-flex items-center text-gray-800">
+                <input type="checkbox" class="form-checkbox" />
+                <span class="ml-2">Preorder</span>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- Ad placeholder -->
+      <div class="bg-indigo-100 border-2 border-dashed border-indigo-300 p-4 text-center text-gray-800 rounded">
+        <p class="font-medium">Your Ad Here</p>
+      </div>
+      </div>
+    </aside>
 
-    </div>
-  </div>
+<!-- Main Content: Product Grid -->
+    <section class="lg:col-span-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 gap-8">
+        @if (productList) {
+          @for (product of productList; track $index) {
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
+            >
+              <!-- Image wrapper with delete button -->
+              <div class="relative aspect-video">
+                <img
+                  [src]="product.imageUrl"
+                  alt="Product Image"
+                  class="object-cover w-full h-full"
+                />
+                <button
+                  (click)="deleteProd(product._id)"
+                  class="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-b-4xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  aria-label="Remove image"
+                >
+                  &times;
+                </button>
+              </div>
+
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ product.name }}</h2>
+                  <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                    {{ product.description }}
+                  </p>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-bold text-gray-900">{{ '$' + product.price }}</span>
+                    <a
+                      [routerLink]="['/products', product._id]"
+                      routerLinkActive="active"
+                      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full text-sm font-medium transition-colors duration-300"
+                    >
+                      View Details
+                    </a>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <a [routerLink]="['/product', product._id, 'reviews']">
+                      <app-rating
+                        [rating]="getAverageRating(product.reviews)"
+                        [readonly]="true"
+                      />
+                    </a>
+                    <p class="text-gray-800 text-sm">({{ product.totalNoReviews }})</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </section>
+
+    <!-- Right Sidebar: Order/Checkout Box -->
+    <aside class="hidden lg:block bg-white p-6 rounded-xl shadow sticky top-8 h-[calc(100vh-4rem)] flex flex-col">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Your Cart</h2>
+      <div class="flex-1 overflow-y-auto space-y-4">
+        <!-- Placeholder for cart items; replace with actual bindings -->
+        <div *ngIf="!cartItems?.length" class="text-gray-600 text-center">
+          Your cart is empty.
+        </div>
+        <div *ngFor="let item of cartItems" class="flex justify-between items-center border-b pb-2">
+          <div class="flex items-center space-x-3">
+            <img
+              [src]="item.product.imageUrl"
+              alt="{{ item.product.name }}"
+              class="w-12 h-12 object-cover rounded"
+            />
+            <div>
+              <p class="text-gray-800 font-medium">{{ item.product.name }}</p>
+              <p class="text-gray-600 text-sm">Qty: {{ item.quantity }}</p>
+            </div>
+          </div>
+          <p class="text-gray-800 font-semibold">{{ '$' + (item.product.price * item.quantity) }}</p>
+        </div>
+      </div>
+      <div class="mt-4 border-t pt-4">
+        <div class="flex justify-between text-gray-800 font-semibold mb-4">
+          <span>Subtotal:</span>
+          <span>{{ '$' + getCartTotal() }}</span>
+        </div>
+        <button
+          (click)="checkout()"
+          class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-medium transition-colors"
+        >
+          Checkout
+        </button>
+      </div>
+    </aside>

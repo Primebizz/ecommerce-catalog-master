@@ -84,4 +84,19 @@ getProdReviews(){
   })
 }
 
+deleteReview(reviewId: string){
+  console.log(`This is the reviewId ${reviewId}`);
+  const id = String(this.route.snapshot.paramMap.get('id'));
+  this.productService.deleteReview(id, reviewId).subscribe((res: Reviews) => {
+    const isDelete = confirm('Are you sure you want to delete this review?');
+    if(isDelete){
+    alert('Review Deleted')
+    this.getProdReviews()
+  }else{
+  alert('There was an error deleting this product.')
+}
+  })
+
+}
+
 }

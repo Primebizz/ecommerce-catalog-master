@@ -50,11 +50,11 @@ export class ProductListComponent implements OnInit{
 
   deleteProd(id: string){
     this.productService.deleteProduct(id).subscribe((res: IModel) => {
-      const isDelete = confirm('Are ou sure you want to delete Product?');
-      if(isDelete){
-        alert('Product Remove Successfully')
+      // const isDelete = confirm('Are ou sure you want to delete Product?');
+      // if(isDelete){
+      //   alert('Product Remove Successfully')
         this.getAllProducts()
-      }
+      // }
     })
   }
 

@@ -11,7 +11,7 @@
             <button class="w-full text-left px-4 py-2 rounded hover:bg-indigo-100 text-gray-800">{{cat.name}}</button>
             <div class="absolute left-full top-0 ml-1 hidden group-hover:block bg-white border rounded-lg shadow-lg w-48">
                 @for (item of cat.type; track $index) {
-            <ul class="divide-y">
+            <ul class="divide-y z-60">
                 <li class="px-4 py-2 hover:bg-gray-100 text-gray-800 cursor-pointer">
                   <a [routerLink]="['/product', item]" class="block">{{item}}</a>
                 </li>
@@ -105,7 +105,7 @@
       <!-- Flash Sales -->
       <div>
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Flash Sales</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 z-5">
           <div class="relative bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200">
             <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">-50%</span>
             <img src="https://via.placeholder.com/300" alt="Flash Sale" class="w-full h-40 object-cover rounded-t-lg" />

@@ -1,44 +1,229 @@
-
- [
-      {
-        "name": "Electronics",
-        "type": ["Mobile Phones", "Laptops", "Cameras", "Headphones", "Wearables"]
-      },
-      {
-        "name": "Fashion",
-        "type": ["Men's Clothing", "Women's Clothing", "Accessories", "Footwear", "Jewelry"]
-      },
-      {
-        "name": "Home & Garden",
-        "type": ["Furniture", "Decor", "Kitchen", "Garden Tools", "Bedding"]
-      },
-      {
-        "name": "Beauty",
-        "type": ["Skincare", "Makeup", "Fragrance", "Haircare", "Bath & Body"]
-      },
-      {
-        "name": "Sports",
-        "type": ["Fitness Equipment", "Outdoor Gear", "Athleisure", "Team Sports", "Cycling"]
-      },
-      {
-        "name": "Toys & Games",
-        "type": ["Action Figures", "Board Games", "Puzzles", "Dolls", "Educational Toys"]
-      },
-      {
-        "name": "Books",
-        "type": ["Fiction", "Non-fiction", "Children's Books", "Comics", "Educational"]
-      },
-      {
-        "name": "Health & Wellness",
-        "type": ["Supplements", "Personal Care", "Wellness Devices", "First Aid", "Nutrition"]
-      },
-      {
-        "name": "Automotive",
-        "type": ["Car Accessories", "Motorcycle Gear", "Tools & Equipment", "Tires", "Oils & Fluids"]
-      },
-      {
-        "name": "Groceries",
-        "type": ["Fresh Produce", "Pantry Staples", "Beverages", "Snacks", "Organic"]
-      }
+[
+  {
+    "name": "Electronics",
+    "type": [
+      "Mobile Phones",
+      "Smartphones",
+      "Feature Phones",
+      "Laptops",
+      "Ultrabooks",
+      "Gaming Laptops",
+      "Tablets",
+      "2-in-1s",
+      "Cameras",
+      "DSLRs",
+      "Mirrorless Cameras",
+      "Action Cameras",
+      "Headphones",
+      "Wireless Earbuds",
+      "Noise-Cancelling Headphones",
+      "Wearables",
+      "Smartwatches",
+      "Fitness Trackers",
+      "Keyboards",
+      "Mechanical Keyboards",
+      "Wireless Keyboards",
+      "Mouse",
+      "Gaming Mouse",
+      "Wireless Mouse"
     ]
- 
+  },
+  {
+    "name": "Fashion",
+    "type": [
+      "Men's Clothing",
+      "T-Shirts & Polos",
+      "Jeans & Trousers",
+      "Suits & Blazers",
+      "Jackets & Coats",
+      "Women's Clothing",
+      "Dresses & Skirts",
+      "Blouses & Tops",
+      "Jeans & Leggings",
+      "Outerwear",
+      "Accessories",
+      "Belts & Wallets",
+      "Hats & Caps",
+      "Scarves & Gloves",
+      "Sunglasses",
+      "Footwear",
+      "Sneakers",
+      "Boots",
+      "Sandals & Flip-Flops",
+      "Jewelry",
+      "Necklaces",
+      "Earrings",
+      "Bracelets",
+      "Rings"
+    ]
+  },
+  {
+    "name": "Home & Garden",
+    "type": [
+      "Furniture",
+      "Living Room",
+      "Bedroom",
+      "Office Furniture",
+      "Decor",
+      "Wall Art & Mirrors",
+      "Rugs & Carpets",
+      "Lighting",
+      "Lamps & Chandeliers",
+      "Kitchen",
+      "Cookware & Bakeware",
+      "Small Kitchen Appliances",
+      "Garden Tools",
+      "Hand Tools",
+      "Power Tools",
+      "Outdoor Furniture",
+      "Patio Sets",
+      "Bedding",
+      "Sheets & Pillowcases",
+      "Comforters & Duvets",
+      "Pillows"
+    ]
+  },
+  {
+    "name": "Beauty & Personal Care",
+    "type": [
+      "Skincare",
+      "Moisturizers",
+      "Cleansers",
+      "Serums & Oils",
+      "Makeup",
+      "Foundation & Concealer",
+      "Lipsticks & Glosses",
+      "Eyeshadow & Eyeliner",
+      "Fragrance",
+      "Men's Cologne",
+      "Women's Perfume",
+      "Haircare",
+      "Shampoo & Conditioner",
+      "Hair Styling",
+      "Bath & Body",
+      "Body Wash & Soap",
+      "Body Lotions & Oils"
+    ]
+  },
+  {
+    "name": "Sports & Outdoors",
+    "type": [
+      "Fitness Equipment",
+      "Treadmills",
+      "Exercise Bikes",
+      "Yoga & Pilates",
+      "Outdoor Gear",
+      "Tents & Camping",
+      "Backpacks & Bags",
+      "Athleisure",
+      "Joggers & Leggings",
+      "Activewear Sets",
+      "Team Sports",
+      "Soccer & Basketball",
+      "Cycling",
+      "Road Bikes",
+      "Mountain Bikes",
+      "Cycling Accessories"
+    ]
+  },
+  {
+    "name": "Toys & Games",
+    "type": [
+      "Action Figures",
+      "Superhero Figures",
+      "Movie & TV Figures",
+      "Board Games",
+      "Strategy Games",
+      "Family Games",
+      "Puzzles",
+      "Jigsaw Puzzles",
+      "3D Puzzles",
+      "Dolls",
+      "Fashion Dolls",
+      "Collectible Dolls",
+      "Educational Toys",
+      "STEM Kits",
+      "Building Sets"
+    ]
+  },
+  {
+    "name": "Books & Media",
+    "type": [
+      "Fiction",
+      "Literary Fiction",
+      "Science Fiction & Fantasy",
+      "Thrillers & Mysteries",
+      "Non-fiction",
+      "Biographies & Memoirs",
+      "Self-Help",
+      "Children's Books",
+      "Picture Books",
+      "Young Adult",
+      "Comics & Graphic Novels",
+      "Manga",
+      "Educational",
+      "Textbooks",
+      "Reference"
+    ]
+  },
+  {
+    "name": "Health & Wellness",
+    "type": [
+      "Supplements",
+      "Vitamins & Minerals",
+      "Protein & Nutrition",
+      "Personal Care",
+      "Oral Care",
+      "Skin Care Devices",
+      "Wellness Devices",
+      "Massage Guns",
+      "First Aid",
+      "Bandages & Dressings",
+      "Medication & Supplies",
+      "Nutrition",
+      "Protein Powders",
+      "Meal Replacements",
+      "Water Bottles & Hydration"
+    ]
+  },
+  {
+    "name": "Automotive",
+    "type": [
+      "Car Accessories",
+      "Seat Covers & Floor Mats",
+      "Electronics & GPS",
+      "Motorcycle Gear",
+      "Riding Jackets",
+      "Riding Helmets",
+      "Tools & Equipment",
+      "Socket & Wrench Sets",
+      "Diagnostic Tools",
+      "Tires & Wheels",
+      "All-Season Tires",
+      "High-Performance Tires",
+      "Oils & Fluids",
+      "Engine Oil",
+      "Brake Fluid"
+    ]
+  },
+  {
+    "name": "Groceries & Gourmet Food",
+    "type": [
+      "Fresh Produce",
+      "Fruits & Vegetables",
+      "Organic Produce",
+      "Pantry Staples",
+      "Flours & Grains",
+      "Canned Goods",
+      "Beverages",
+      "Coffee & Tea",
+      "Juices & Sodas",
+      "Snacks",
+      "Chips & Crackers",
+      "Chocolate & Candy",
+      "Organic & Specialty",
+      "Gluten-Free Foods",
+      "Vegan & Vegetarian"
+    ]
+  }
+]

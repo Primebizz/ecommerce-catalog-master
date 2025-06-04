@@ -89,6 +89,10 @@ deleteProduct(id: string): Observable<IModel>{
     updateProduct(id: string, obj: Model): Observable<IModel> {
         return this.http.patch<IModel>(`${Environment.API_URL}product/${id}`, obj);
     }
+
+    deleteReview(prodId: string, reviewId: string): Observable<Reviews>{
+      return this.http.delete<Reviews>(`${Environment.API_URL}products/${prodId}/reviews/${reviewId}`);
+    }
     
   }
 
