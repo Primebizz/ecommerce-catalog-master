@@ -14,7 +14,7 @@
                 @for (item of cat.type; track $index) {
             <ul class="divide-y">
                 <li class="px-4 py-2 hover:bg-gray-100 text-gray-800 cursor-pointer">
-                  <a [routerLink]="['/product', item]" (click)="getAllProducts()" class="block">{{item}}</a>
+                  <a [routerLink]="['/product', item]" (click)="getCategory()" class="block">{{item}}</a>
                 </li>
             </ul>
                 }

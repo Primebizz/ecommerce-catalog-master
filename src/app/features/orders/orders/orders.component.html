@@ -14,25 +14,30 @@
           </tr>
         </thead>
         <tbody class="divide-y">
-          <tr *ngFor="let order of user.orderHistory">
+          
+            @for (order of orderList; track $index) {
+          <tr>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ order._id }}</td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ order.createdAt | date:'medium' }}</td>
             <td class="px-6 py-4 whitespace-nowrap text-sm">
               <span [ngClass]="{
-                  'text-green-600': order.status === 'delivered',
-                  'text-yellow-600': order.status === 'processing',
-                  'text-red-600': order.status === 'cancelled'
+                  'text-green-600': order.status === 'Delivered',
+                  'text-yellow-600': order.status === 'Processing',
+                  'text-red-600': order.status === 'Cancelled'
                 }">
                 {{ order.status | titlecase }}
               </span>
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">${{ order.total.toFixed(2) }}</td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
-              <button (click)="viewOrder(order)" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
+              <button (click)="viewOrder(order._id)" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
                 View
               </button>
             </td>
-          </tr>
+          </tr>   
+            }
+          
+
         </tbody>
       </table>
     </div>

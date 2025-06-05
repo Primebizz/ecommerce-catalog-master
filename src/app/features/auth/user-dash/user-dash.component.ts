@@ -30,7 +30,7 @@ export class UserDashComponent implements OnInit {
 
   router = inject(Router)
 
-  userDetails: any = [];
+  userDetails: any = []
 
   userService = inject(AuthServiceService)
 

@@ -1,6 +1,6 @@
 import { CartItem } from './../../../Interface/model';
 import { routes } from '../../../app.routes';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ICat, IModel } from '../../../Interface/model';
 import { ProductService } from '../../../core/Services/product.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';

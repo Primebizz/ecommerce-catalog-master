@@ -105,7 +105,7 @@ export class User{
 
     // Commerce & engagement
     cartItems: CartItem[];
-    orderHistory: string[];
+    orderHistory: Order[];
     totalSpent: number;
     membershipTier: string;
     rewardPoints: number;

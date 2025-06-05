@@ -3,11 +3,11 @@ import { Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angula
 import { first } from 'rxjs';
 import { AuthServiceService } from '../../../core/Services/auth-service.service';
 import { ApiResponse, IUser, User } from '../../../Interface/model';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -33,19 +33,46 @@ export class ProfileComponent implements OnInit {
             
           });
 
-          this.userObj = new User({
-            firstName: this.user.firstName,
-            lastName: this.user.lastName,
-            email: this.user.email,
-            phone: this.user.phone,
-            dateOfBirth: this.user.dateOfBirth,
-          })
+          this.profileForm = new FormGroup({
+    firstName: new FormGroup(''),
+    lastName: new FormGroup(this.user.lastName),
+    email: new FormGroup(''),
+    phone: new FormGroup(''),
+    dateOfBirth: new FormGroup(''),
+  });
   }
+
+  profileForm: FormGroup = new FormGroup({
+    firstName: new FormGroup(''),
+    lastName: new FormGroup(''),
+    email: new FormGroup(''),
+    phone: new FormGroup(''),
+    dateOfBirth: new FormGroup(''),
+  });
+
+
+  get firstName() {
+    return this.profileForm.get('firstName');
+  }
+  get lastName() {
+    return this.profileForm.get('lastName');
+  }
+  get email() {
+    return this.profileForm.get('email');
+  }
+  get phone() {
+    return this.profileForm.get('phone');
+  }
+
+  get dateOfBirth() {
+    return this.profileForm.get('dateOfBirth');
+  }
+
 
   onUpdate(){
     const update = confirm('Is the information okay?');
     if(update){
-      this.userService.updateUser(this.user._id, this.userObj).subscribe((res: ApiResponse) => {
+      this.userService.updateUser(this.user._id, this.profileForm.value).subscribe((res: ApiResponse) => {
         alert('Profile Successfully Updated!')
       })
     }else {
