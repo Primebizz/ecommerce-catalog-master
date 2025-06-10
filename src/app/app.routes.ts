@@ -83,7 +83,13 @@ export const routes: Routes = [
         path: 'orders',
         loadComponent: () =>
           import('./features/orders/orders/orders.component')
-            .then(m => m.OrdersComponent)
+            .then(m => m.OrdersComponent),
+        children: [{
+          path: 'order-details/:id',
+          loadComponent: () =>
+            import('./features/orders/order-details/order-details.component')
+              .then(m => m.OrderDetailsComponent)
+        }]
       },
       {
         path: 'settings',

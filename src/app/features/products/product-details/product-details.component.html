@@ -74,7 +74,7 @@
     <!-- Checkout Summary -->
 <div class="mt-6 p-4 rounded-md shadow">
   <p class="text-lg font-bold mb-2">
-    Total: {{ '$' + total() }}
+    Total: {{ '$' + total().toFixed(2) }}
   </p>
   <button
     class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md"

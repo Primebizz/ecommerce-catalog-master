@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { IModel } from '../../../Interface/model';
+import { CartItem, IModel } from '../../../Interface/model';
 import { CartService } from '../../../core/Services/cart.service';
 import { ProductService } from '../../../core/Services/product.service';
 import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
@@ -16,9 +16,9 @@ export class CartComponent implements OnInit{
   product: IModel | undefined
 
   cartItems: IModel[] = [];
-  total: number = 0;
-  priceTotal: any = localStorage.getItem('total');
-  localCart: any = signal(JSON.parse(localStorage.getItem('product') || "[]"));
+  total: number = 1;
+  priceTotal: number = 0;
+  localCart: any = JSON.parse(localStorage.getItem('product') || "[]");
 //  localId = this.localCart[i]
   router = inject(Router)
 
@@ -28,18 +28,17 @@ export class CartComponent implements OnInit{
   ngOnInit(): void {
     this.cartService.getCartItems().subscribe((items: any) => {
       this.cartItems = items;
-      this.total = this.cartService.calculateTotal();
-      this.router.navigateByUrl('/cart')
-      this.getLocal();
-      this.totalPrice();
-      this.total
+      // this.getLocal();
+      // this.priceTotal;
     });
+    this.totalPrice()
     
   }
 
   totalPrice(){
-    for(let i = 0; i < this.localCart().length; i++){
-      this.total += this.localCart()[i].price;
+    for(let i = 0; i <= this.localCart.length; i++){
+      this.priceTotal += this.localCart[i].price;
+      // console.log('This is the total price ' + this.priceTotal);
     }
     // let toLetter = JSON.stringify(this.total)
     //   let num = parseFloat(toLetter)
@@ -47,17 +46,17 @@ export class CartComponent implements OnInit{
     //     toLetter = num.toFixed(2)
     //   }
     // localStorage.setItem('total', JSON.stringify(toLetter));
-      console.log('This is the total price ' + this.total);
+      
       
   }
 
   getLocal(){
-    this.localCart()
+    this.localCart
     // window.location.reload()
   }
 
   removeCartItem(array: any, id: string){
-    const index = array.findIndex((item: IModel) => item._id === id);
+    const index = array.findIndex((item: CartItem) => item.Id === id);
     if (index > -1) {
       array.splice(index, 1);
       localStorage.setItem('product', JSON.stringify(array));

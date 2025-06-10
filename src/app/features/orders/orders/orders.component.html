@@ -1,4 +1,4 @@
-<main class="bg-gray-100 flex items-center justify-center py-12 px-4">
+<main class="bg-gray-100 flex items-center justify-center py-12 px-4 relative">
   <div class="bg-white rounded-2xl shadow-lg w-full max-w-5xl p-8">
     <h2 class="text-3xl font-bold text-gray-800 mb-6">My Orders</h2>
 
@@ -30,11 +30,16 @@
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">${{ order.total.toFixed(2) }}</td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm">
-              <button (click)="viewOrder(order._id)" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+              <button (click)="openModal(order)" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
                 View
               </button>
             </td>
-          </tr>   
+          </tr>  
+          <app-order-details 
+          *ngIf="selectedOrder" 
+          [order]="selectedOrder" 
+          (close)="selectedOrder = null">
+        </app-order-details>
             }
           
 
@@ -49,3 +54,8 @@
     </div>
   </div>
 </main>
+
+<div class="top-0 left-0 right-0 absolute modal-middle modal-backdrop bg-black text-gray-950">
+  <h1 class="text-9xl text-gray-900">This is a modal</h1>
+</div>
+

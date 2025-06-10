@@ -7,6 +7,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RatingComponent } from '../../../shared/rating/rating.component';
+import { CartService } from '../../../core/Services/cart.service';
 
 @Component({
   selector: 'app-prod-list-type',
@@ -16,9 +17,13 @@ import { RatingComponent } from '../../../shared/rating/rating.component';
 })
 export class ProdListTypeComponent implements OnInit{
 
+  localCart: any = JSON.parse(localStorage.getItem('product') || "[]");
+
   productList: IModel[] = []
 
   productsServices = inject(ProductService)
+
+  cartService = inject(CartService)
 
   router = inject(Router)
 
@@ -26,9 +31,7 @@ export class ProdListTypeComponent implements OnInit{
   
     category: ICat[] = [];
 
-    cartItems: any = {
-
-    }
+    cartItems: CartItem[] = [];
   
     getCategory(){
       this.productsServices.getCategory().subscribe((res: ICat[]) => {
@@ -41,6 +44,9 @@ export class ProdListTypeComponent implements OnInit{
     const type = String(this.route.snapshot.paramMap.get('type'));
     this.productsServices.getProductByCategoriesAndType(type).subscribe((product) => {
       this.productList = product;
+    })
+    this.cartService.getCartItems().subscribe((items: any) => {
+      this.cartItems = items;
     })
     this.getAllProducts()
     this.getCategory()

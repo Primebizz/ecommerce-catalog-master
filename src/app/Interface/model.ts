@@ -58,7 +58,11 @@ export interface Address {
 }
 
 export interface CartItem {
-  productId: string;
+  Id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
   quantity: number;
 }
 

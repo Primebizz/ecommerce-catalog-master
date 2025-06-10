@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../../core/Services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IModel, Model } from '../../../Interface/model';
+import { CartItem, IModel, Model } from '../../../Interface/model';
 import { CartService } from '../../../core/Services/cart.service';
 import { CartComponent } from "../../cart/cart/cart.component";
 import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
@@ -18,7 +18,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
 
   addproducts: Model = new Model();
   product: IModel | undefined;
-  cartItems: IModel[] = [];
+  cartItems: CartItem[] = [];
   total = signal(0);
   totalProduct: number = (0);
   localProdArr: any = [] 
@@ -27,6 +27,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
   router = inject(Router)
 
   route = inject(ActivatedRoute)
+
+
 
 
   constructor(){
@@ -49,6 +51,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
     // this.getProdPrice();
     // this.ngOnDestroy()
   }
+  
+  
 
  
 
@@ -62,6 +66,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
   }
 
   addToCart(){
+
+    const cart = {
+      Id: this.product?._id,
+      name: this.product?.name,
+      description: this.product?.description,
+      price: this.product?.price,
+      imageUrl: this.product?.imageUrl,
+      quantity: this.totalProduct,
+    }
     
     if(this.product){
       // const prodKey = 'product';
@@ -83,11 +96,20 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
     localStorage.setItem('total', JSON.stringify(this.total));
     // this.localProdArr.push(this.product);
   
-
+debugger
         let getLocalArr = JSON.parse(localStorage.getItem('product') || "[]");
       console.log('This is the typeof GetLocalArr' + typeof getLocalArr);
-        getLocalArr.unshift(this.product)
-        localStorage.setItem('product', JSON.stringify(getLocalArr));
+      for(let i = 0; i <= getLocalArr.length; i++){
+        let id = getLocalArr[i].id
+        if(id == cart.Id && getLocalArr !== null){
+        getLocalArr[i].quantity = cart.quantity
+        return  localStorage.setItem('product', JSON.stringify(getLocalArr));
+        }
+          getLocalArr.unshift(cart)
+        return  localStorage.setItem('product', JSON.stringify(getLocalArr));
+        
+      }
+    
       
  }
 
@@ -151,11 +173,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
 
     productIncrease(){
       this.totalProduct++;
+      this.addTotal()
     }
 
     productDecrease(){
       if(this.totalProduct !== 0){
         this.totalProduct--;
+        this.addTotal()
       }else{
         // const disable = document.getElementById('_disable');
         // disable?.classList.toggle('none');
@@ -204,8 +228,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
   addTotal(){
     if(this.product){
        let _: any = this.totalProduct;
-    const totalItems: number = this.cartService.calculateTotal();
-     this.total.update(() =>  totalItems * _);
+    // const totalItems: number = this.cartService.calculateTotal();
+    let _productPrice = this.product.price
+     this.total.update(() =>  _productPrice * _);
     }
    
     }

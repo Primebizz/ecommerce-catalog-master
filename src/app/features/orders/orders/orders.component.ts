@@ -4,10 +4,11 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { OrderServiceService } from '../../../core/Services/order-service.service';
 import { ApiResponse, Order, User } from '../../../Interface/model';
 import { AuthServiceService } from '../../../core/Services/auth-service.service';
+import { OrderDetailsComponent } from '../order-details/order-details.component';
 
 @Component({
   selector: 'app-orders',
-  imports: [CommonModule],
+  imports: [CommonModule, OrderDetailsComponent],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
@@ -20,6 +21,8 @@ export class OrdersComponent implements OnInit{
   user: any = [];
 
   orderList: Order[] = [];
+
+  selectedOrder: Order | null = null;
 
   ngOnInit(): void {
 
@@ -46,7 +49,26 @@ export class OrdersComponent implements OnInit{
   date = Date.now()
 
   viewOrder(order: string){
+    this.orderService.getOrdersById(order).subscribe((res: any) => {
+      if(res){
+        console.log(`This is the order details:`, res);
+        // Logic to display order details
+        // For example, you can navigate to a new route or open a modal
+      } else {
+        console.error('Failed to fetch order details:', res.message);
+      }
+    
+  })
+  }
 
+  openModal(order: Order){
+    this.selectedOrder = order;
+  }
+
+  onClose() {
+    
   }
 
 }
+
+
