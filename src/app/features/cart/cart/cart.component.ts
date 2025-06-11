@@ -4,6 +4,7 @@ import { CartService } from '../../../core/Services/cart.service';
 import { ProductService } from '../../../core/Services/product.service';
 import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../../core/Services/auth-service.service';
 
 @Component({
   selector: 'app-cart',
@@ -22,8 +23,11 @@ export class CartComponent implements OnInit{
 //  localId = this.localCart[i]
   router = inject(Router)
 
-  productService = inject(ProductService)
-  cartService = inject(CartService)
+  productService = inject(ProductService);
+
+  cartService = inject(CartService);
+
+  authService = inject(AuthServiceService)
 
   ngOnInit(): void {
     this.cartService.getCartItems().subscribe((items: any) => {
@@ -56,7 +60,7 @@ export class CartComponent implements OnInit{
   }
 
   removeCartItem(array: any, id: string){
-    const index = array.findIndex((item: CartItem) => item.Id === id);
+    const index = array.findIndex((item: CartItem) => item.id === id);
     if (index > -1) {
       array.splice(index, 1);
       localStorage.setItem('product', JSON.stringify(array));
@@ -75,6 +79,19 @@ export class CartComponent implements OnInit{
   //   alert('Item removed from cart') 
   //   localStorage.setItem('product1', JSON.stringify(array))
   // }
+  
+}
+
+checkOut(){
+  if(!this.authService.isLoggedIn()){
+    alert('Please login to continue');
+    this.router.navigateByUrl('auth-page');
+    return;
+  }else{
+    
+    this.router.navigateByUrl('checkout');
+  }
+  
   
 }
 

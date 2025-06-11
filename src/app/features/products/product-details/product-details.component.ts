@@ -99,17 +99,25 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
 debugger
         let getLocalArr = JSON.parse(localStorage.getItem('product') || "[]");
       console.log('This is the typeof GetLocalArr' + typeof getLocalArr);
-      for(let i = 0; i <= getLocalArr.length; i++){
-        let id = getLocalArr[i].id
-        if(id == cart.Id && getLocalArr !== null){
-        getLocalArr[i].quantity = cart.quantity
-        return  localStorage.setItem('product', JSON.stringify(getLocalArr));
-        }
-          getLocalArr.unshift(cart)
-        return  localStorage.setItem('product', JSON.stringify(getLocalArr));
+      // for(let i = 0; i <= getLocalArr.length; i++){
+      //   let id = getLocalArr[i].id
+      //   if(id == cart.Id && getLocalArr !== null){
+      //   getLocalArr[i].quantity = cart.quantity
+      //   return  localStorage.setItem('product', JSON.stringify(getLocalArr));
+      //   }
+      //     getLocalArr.unshift(cart)
+      //   return  localStorage.setItem('product', JSON.stringify(getLocalArr));
         
+      // }
+
+      // Update quantity if product exists, otherwise add new product to cart
+      const existingIndex = getLocalArr.findIndex((item: any) => item.Id === cart.Id);
+      if (existingIndex !== -1) {
+        getLocalArr[existingIndex].quantity = cart.quantity;
+      } else {
+        getLocalArr.unshift(cart);
       }
-    
+      localStorage.setItem('product', JSON.stringify(getLocalArr));
       
  }
 

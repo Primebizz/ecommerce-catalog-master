@@ -58,7 +58,7 @@ export interface Address {
 }
 
 export interface CartItem {
-  Id: string;
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -191,11 +191,11 @@ export interface LineItem {
   productId: string;
   name: string;
   imageUrl: string;
-  unitPrice: number;
+  price: number;
   quantity: number;
 }
 
-export interface Order {
+export class Order {
   _id: string;
   userId: string;
   items: LineItem[];
@@ -214,4 +214,27 @@ export interface Order {
   status: 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
   createdAt: string;
   updatedAt: string;
+
+
+  constructor(init?: Partial<Order>){
+    this._id = '',
+    this.userId = '',
+    this.items = [],
+    this.shippingAddress = {
+      line1: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: ''
+    },
+    this.paymentMethod = '';
+    this.subtotal = 0;
+    this.tax = 0;
+    this.shippingFee = 0,
+    this.total = 0,
+    this.status = 'Processing',
+    this.createdAt = '',
+    this.updatedAt = ''
+
+  }
 }

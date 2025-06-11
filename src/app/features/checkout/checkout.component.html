@@ -1,0 +1,124 @@
+<!-- checkout.component.html -->
+<main class="bg-gray-50 min-h-screen p-8">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Checkout</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Shipping Address Form -->
+      <section>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Shipping Address</h2>
+        <form [formGroup]="checkoutForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input formControlName="fullName" type="text" placeholder="John Doe"
+                   class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Address Line 1</label>
+            <input formControlName="address1" type="text" placeholder="123 Main St"
+                   class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Address Line 2</label>
+            <input formControlName="address2" type="text" placeholder="Apt, Suite, etc. (optional)"
+                   class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">City</label>
+              <input formControlName="city" type="text" placeholder="City"
+                     class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" required />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Postal Code</label>
+              <input formControlName="zip" type="text" placeholder="ZIP / Postal Code"
+                     class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" required />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Country</label>
+            <select formControlName="country"
+                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800">
+              <option value="">Select Country</option>
+              <option>Nigeria</option>
+              <option>Canada</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <!-- Add more countries as needed -->
+            </select>
+          </div>
+        </form>
+      </section>
+
+      <!-- Order Summary & Payment Method -->
+      <section class="bg-gray-100 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h2>
+        <ul class="divide-y divide-gray-300 mb-4">
+            <!-- @for (item of cartItems; track $index) {
+              <li class="py-2 flex justify-between">
+            <span class="text-gray-800">{{ item.name }} × {{ item.quantity }}</span>
+            <span class="text-gray-800 font-medium">
+              ${{ (item.price * item.quantity) | number:'1.2-2' }}
+            </span>
+          </li>    
+            } -->
+        
+        </ul>
+        <div class="flex justify-between text-gray-800 font-semibold mb-2">
+          <span>Subtotal:</span>
+          <span>${{ subtotal | number:'1.2-2' }}</span>
+        </div>
+        <div class="flex justify-between text-gray-800 mb-2">
+          <span>Shipping:</span>
+          <span>${{ shippingFee | number:'1.2-2' }}</span>
+        </div>
+        <div class="flex justify-between text-gray-800 mb-4">
+          <span>Tax:</span>
+          <span>${{ tax | number:'1.2-2' }}</span>
+        </div>
+        <div class="border-t pt-2 flex justify-between text-lg font-bold text-gray-800 mb-6">
+          <span>Total:</span>
+          <span>${{ total | number:'1.2-2' }}</span>
+        </div>
+
+        <!-- Payment Method -->
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Payment Method</h2>
+        <form [formGroup]="checkoutForm" class="space-y-4">
+          <div>
+            <label class="inline-flex items-center">
+              <input type="radio" formControlName="paymentMethod" value="card"
+                     class="form-radio text-indigo-600" checked />
+              <span class="ml-2 text-gray-800">Credit/Debit Card</span>
+            </label>
+          </div>
+          <div>
+            <label class="inline-flex items-center">
+              <input type="radio" formControlName="paymentMethod" value="paypal"
+                     class="form-radio text-indigo-600" />
+              <span class="ml-2 text-gray-800">PayPal</span>
+            </label>
+          </div>
+          <!-- Card fields shown only if selected -->
+          <div *ngIf="checkoutForm.get('paymentMethod')?.value === 'card'" class="space-y-4">
+            <input formControlName="cardNumber" type="text" placeholder="Card Number"
+                   class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" required />
+            <div class="grid grid-cols-2 gap-4">
+              <input formControlName="expiry" type="text" placeholder="MM / YY"
+                     class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" required />
+              <input formControlName="cvc" type="text" placeholder="CVC"
+                     class="mt-1 w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 text-gray-800" required />
+            </div>
+          </div>
+
+          <!-- Place Order -->
+          <button (click)="placeOrder()"
+                  [disabled]="checkoutForm.invalid"
+                  class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-300 disabled:text-gray-600">
+            Place Order
+          </button>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+

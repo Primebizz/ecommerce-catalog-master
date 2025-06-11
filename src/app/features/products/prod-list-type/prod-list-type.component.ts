@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RatingComponent } from '../../../shared/rating/rating.component';
 import { CartService } from '../../../core/Services/cart.service';
+import { AuthServiceService } from '../../../core/Services/auth-service.service';
 
 @Component({
   selector: 'app-prod-list-type',
@@ -17,13 +18,15 @@ import { CartService } from '../../../core/Services/cart.service';
 })
 export class ProdListTypeComponent implements OnInit{
 
-  localCart: any = JSON.parse(localStorage.getItem('product') || "[]");
+  localCart: CartItem[] = JSON.parse(localStorage.getItem('product') || "[]");
 
   productList: IModel[] = []
 
   productsServices = inject(ProductService)
 
   cartService = inject(CartService)
+
+  authService = inject(AuthServiceService)
 
   router = inject(Router)
 
@@ -76,11 +79,21 @@ export class ProdListTypeComponent implements OnInit{
 }
 
 getCartTotal(){
-
+  let total = 0;
+  for(let i = 0; i < this.localCart.length; i++){
+    let price = this.localCart[i].quantity * this.localCart[i].price
+    total += price;  
+}
+return total;
 }
 
 checkout(){
 
+  if(this.authService.isLoggedIn()){
+    this.router.navigateByUrl('checkout')
+  }else{
+    this.router.navigateByUrl('auth-page')
+  }
 }
 
 }

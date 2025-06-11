@@ -45,12 +45,12 @@
           <div>
             <p class="text-gray-800">{{ item.name }}</p>
             <p class="text-gray-600 text-sm">
-              {{ item.quantity }} × ${{ item.unitPrice }}
+              {{ item.quantity }} × ${{ item.price }}
             </p>
           </div>
         </div>
         <p class="text-gray-800 font-semibold">
-          ${{ (item.quantity * item.unitPrice) | number:'1.2-2' }}
+          ${{ (item.quantity * item.price) | number:'1.2-2' }}
         </p>
       </li>
     </ul>

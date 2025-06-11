@@ -19,8 +19,8 @@ export class OrderServiceService {
   return this.http.get<Order[]>(`${Environment.API_URL}orders/${orderId}`);
   }
 
-  placeOrdrer(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${Environment.API_URL}order`, order);
+  placeOrdrer(order: Order): Observable<Order[]> {
+    return this.http.post<Order[]>(`${Environment.API_URL}order`, order);
   }
 
 
