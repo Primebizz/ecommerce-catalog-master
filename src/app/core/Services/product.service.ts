@@ -1,5 +1,5 @@
 import { ICat, IModel, Model, Reviews } from '../../Interface/model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../Environment/environment';
 import { BehaviorSubject, map, Observable } from 'rxjs';
@@ -93,6 +93,25 @@ deleteProduct(id: string): Observable<IModel>{
     deleteReview(prodId: string, reviewId: string): Observable<Reviews>{
       return this.http.delete<Reviews>(`${Environment.API_URL}products/${prodId}/reviews/${reviewId}`);
     }
+
+
+  getSearchedProduct(filters: {
+    name?: string;
+    category?: string;
+    type?: string;
+    page?: number;
+  }): Observable<IModel[]> {
+    let params = new HttpParams();
+    Object.entries(filters).forEach(([key, val]) => {
+      if (val != null && val !== '') {
+        params = params.set(key, String(val));
+      }
+    });
+    return this.http.get<IModel[]>(`${Environment.API_URL}products`, {
+      params
+    });
+    
+  }
     
   }
 
