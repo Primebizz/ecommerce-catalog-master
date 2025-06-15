@@ -95,21 +95,23 @@ deleteProduct(id: string): Observable<IModel>{
     }
 
 
-  getSearchedProduct(filters: {
-    name?: string;
-    category?: string;
-    type?: string;
-    page?: number;
-  }): Observable<IModel[]> {
-    let params = new HttpParams();
-    Object.entries(filters).forEach(([key, val]) => {
-      if (val != null && val !== '') {
-        params = params.set(key, String(val));
-      }
-    });
-    return this.http.get<IModel[]>(`${Environment.API_URL}products`, {
-      params
-    });
+  getSearchedProduct(searchValue: string, page = 1): Observable<IModel[]> {
+  //   name?: string;
+  //   category?: string;
+  //   type?: string;
+  //   page?: number;
+  // }): Observable<IModel[]> {
+  //   let params = new HttpParams();
+  //   Object.entries(filters).forEach(([key, val]) => {
+  //     if (val != null && val !== '') {
+  //       params = params.set(key, String(val));
+  //     }
+  //   });
+  //   return this.http.get<IModel[]>(`${Environment.API_URL}products`, {
+  //     params
+  //   });
+
+  return this.http.get<IModel[]>(`${Environment.API_URL}products/search/${searchValue}?p=${page}`);
     
   }
     

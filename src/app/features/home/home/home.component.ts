@@ -18,32 +18,38 @@ export class HomeComponent implements OnInit{
 
   category: ICat[] = []
 
-  searchItems: any = []
+  searchItems: IModel[] = []
+
+  searchValue = '';
 
   
 
   searchForm = new FormGroup({
-    searchValue: new FormControl('')
+    searchInput: new FormControl('')
   })
 
-  get searchValue(){
-    return this.searchForm.get('searchValue');
+  get searchInput(){
+    return this.searchForm.get('searchInput');
   }
   
 
   ngOnInit(): void {
-    // Initialization logic can go here
-    console.log('Home component initialized');
     this.getCategory()
-    this.onGetSearched()
-
-    console.log("This is the search items" + this.searchItems);
+    this.searchForm.get('searchInput')!
+      .valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(value => {
+        this.searchValue = value ?? '';
+        this.fetchData();
+      });
   }
 
   getCategory(){
     this.productsServices.getCategory().subscribe((res: ICat[]) => {
       this.category = res
-      console.log(this.category);
     })
   }
 
@@ -63,33 +69,38 @@ export class HomeComponent implements OnInit{
   onGetSearched(){
     // debugger
     // document.getElementById('searchBar')?.addEventListener('keydown', () => {
-    // const searchValue = this.serchForm.value.searchValue;
+    // this.searchValue = this.searchForm.value.searchInput ?? '';
+    // this.fetchData();
+    // console.log("This is the searchValue " + this.searchValue);
     // if (searchValue) {
     //   this.productsServices.getSearchedProduct({name: searchValue, page: 1}).subscribe((res: any) => {
     //     this.searchItems = res;
     //     console.log("This is the searchValue" + searchValue);
-    //   });
+      // });
     // } else {
     //   this.searchItems = [];
     // }
-    //   })
+      // })
 
 
-    this.searchForm
-    .get('searchValue')!
-    .valueChanges
-    .pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term) => term
-        ? this.productsServices.getSearchedProduct({name: term, page: 1})
-        : of([])
-      )
-    )
-    .subscribe((results: IModel[]) => {
-      this.searchItems = results
-      console.log('This is the search result', results.map(item => item.name));
-    });
+    // this.searchForm
+    // .get('searchInput')!
+    // .valueChanges
+    // .pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap((term) => term
+    //     ? this.productsServices.getSearchedProduct(this.searchValue)
+    //     : of([])
+    //   )
+    // )
+    // this.fetchData()
+  }
+
+  fetchData(){
+    this.productsServices.getSearchedProduct(this.searchValue).subscribe((res: IModel[]) => {
+      this.searchItems = res;
+    })
   }
 
 }
