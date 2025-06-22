@@ -114,6 +114,10 @@ deleteProduct(id: string): Observable<IModel>{
   return this.http.get<IModel[]>(`${Environment.API_URL}products/search/${searchValue}?p=${page}`);
     
   }
+
+  getHotPicks(limit = 10): Observable<IModel[]> {
+    return this.http.get<IModel[]>(`${Environment.API_URL}prod/hotpicks?limit=${limit}`);
+  }
     
   }
 

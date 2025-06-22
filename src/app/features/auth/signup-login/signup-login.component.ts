@@ -1,3 +1,4 @@
+declare var google: any;
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Component, ElementRef, inject, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
@@ -15,6 +16,19 @@ import { AuthServiceService } from '../../../core/Services/auth-service.service'
 export class SignupLoginComponent implements OnInit{
 
   ngOnInit(): void {
+    google.accounts.id.initialize({
+      client_id: '1073068145028-u28rhigb9m6sh3n46vol527qidqdkf3l.apps.googleusercontent.com',
+      callback: (res: any) => {
+        
+      }
+    });
+
+    google.accounts.id.renderButton(document.getElementById("google-btn"), {
+      theme: 'filled_blue',
+      size: 'large',
+      shape: 'rectangle',
+      width: 350
+    })
   
   }
 

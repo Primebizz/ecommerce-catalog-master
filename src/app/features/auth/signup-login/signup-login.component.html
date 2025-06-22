@@ -88,14 +88,35 @@
         <div class="flex-grow border-t"></div>
       </div>
       <div class="flex space-x-2">
-        <button class="flex-1 py-2 border rounded-lg flex items-center justify-center hover:bg-gray-100">
-          <img src="assets/google.svg" alt="Google" class="h-5 w-5 mr-2"/> Sign in with Google
-        </button>
+        <div>
+          <div id="g_id_onload"
+      class="g_id_signin"
+     data-client_id="1073068145028-u28rhigb9m6sh3n46vol527qidqdkf3l.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="http://localhost:3000/login"
+     data-itp_support="true">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
+        </div>
+    
+
         <button class="flex-1 py-2 border rounded-lg flex items-center justify-center hover:bg-gray-100">
           <img src="assets/facebook.svg" alt="Facebook" class="h-5 w-5 mr-2"/> Facebook
         </button>
       </div>
     </form>
+    <div id="google-btn">
+  
+</div>
     } @else {
     <form [formGroup]="signUpForm" (submit)="signUp()" class="space-y-4" id="form">
       <!-- Name fields -->
@@ -147,6 +168,24 @@
               class="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
         Sign Up
       </button>
+      <div id="g_id_onload"
+     data-client_id="1073068145028-u28rhigb9m6sh3n46vol527qidqdkf3l.apps.googleusercontent.com"
+     data-context="signup"
+     data-ux_mode="popup"
+     data-login_uri="http://localhost:3000/signup"
+     data-nonce=""
+     data-auto_select="true"
+     data-itp_support="true">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
     </form>
     }
   </section>

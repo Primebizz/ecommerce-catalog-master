@@ -7,10 +7,11 @@ import { CartComponent } from "../../cart/cart/cart.component";
 import { NavbarComponent } from "../../../layouts/navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RatingComponent } from '../../../shared/rating/rating.component';
 
 @Component({
   selector: 'app-product-details',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RatingComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
@@ -22,6 +23,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
   total = signal(0);
   totalProduct: number = (0);
   localProdArr: any = [] 
+  selectedImage:any = '';
+  activeTab:any = ''
   productsServices = inject(ProductService);
   cartService = inject(CartService)
   router = inject(Router)
@@ -76,7 +79,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy{
       quantity: this.totalProduct,
     }
     
-    if(this.product){
+    if(this.product && this.totalProduct > 0){
       // const prodKey = 'product';
       // let _: any = this.product.price * this.totalProduct;
       const prod: any = this.cartService.addToCart(this.product);
@@ -242,6 +245,12 @@ debugger
     }
    
     }
+
+getAverageRating(reviews: { rating: number }[]): number {
+  if (!reviews || reviews.length === 0) return 0;
+  const sum = reviews.reduce((acc, curr) => acc + curr.rating, 0);
+  return sum / reviews.length;
+}
 
 
 

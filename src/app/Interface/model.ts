@@ -2,13 +2,23 @@ export interface IModel {
     _id: string,
     name: string,
     description: string,
+    shortDescription?: string,
     price: number,
     imageUrl: string,
     category: string,
     type: string,
+    brandName: string;
+    gallery: [];
+    attributes: Attribute[];
     reviews: Reviews[];
     totalNoReviews?: number;
-    stock: boolean
+    stock: boolean;
+    purchaseCount: PurchaseCount[];
+}
+
+export interface PurchaseCount {
+  date: string;
+  count: number;
 }
 
 
@@ -20,6 +30,7 @@ export class Model {
     imageUrl: string;
     category: string;
     type: string;
+    brandName: string;
     reviews: Reviews[];
     totalNoReviews?: number;
     stock: boolean
@@ -33,6 +44,7 @@ export class Model {
     this.imageUrl = '';
     this.category = '';
     this.type = '';
+    this.brandName = '';
     this.reviews = init?.reviews ?? [];
     this.totalNoReviews = init?.reviews ? init.reviews.length : 0;
     this.stock = false;
@@ -46,6 +58,11 @@ export interface Reviews{
   rating: number;
   comment: string;
   date: Date;
+}
+
+export interface Attribute{
+  name: string;
+  value: string;
 }
 
 export interface Address {
@@ -73,7 +90,11 @@ export interface ViewedItem {
 
 export interface ICat{
   name: string;
-  type: string
+  type: string;
+  open: boolean;
+  subCategories?: string[];
+  products?: IModel[];
+  [key: string]: any; // Allow additional properties
 }
 
 export interface Preferences {
