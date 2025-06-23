@@ -48,7 +48,7 @@
           <div class="inline-flex items-center border border-gray-300 rounded-md">
             <button (click)="productDecrease()" class="px-3 py-1 text-2xl" [ngClass]="totalProduct==0?'text-gray-400':'text-gray-800'" [disabled]="totalProduct < 1">-</button>
             <span class="px-4 text-lg">{{ totalProduct }}</span>
-            <button (click)="productIncrease()" class="px-3 py-1 text-xl text-gray-700">+</button>
+            <button (click)="productIncrease()" class="px-3 py-1 text-xl" [ngClass]="product.stock == false ? 'text-gray-400':'text-gray-800'" [disabled]="product.stock == false">+</button>
           </div>
           <button
             (click)="addToCart()"

@@ -1,8 +1,11 @@
+import { IModel } from './Interface/model';
 import { Routes } from '@angular/router';
 import { userguardGuard } from './core/guard/userguard.guard';
 import { loginGuard }    from './core/guard/login.guard';
 
 export const routes: Routes = [
+
+  
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
@@ -10,7 +13,8 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () =>
-      import('./features/home/home/home.component').then(m => m.HomeComponent)
+      import('./features/home/home/home.component').then(m => m.HomeComponent),
+    title: 'Shop for all the latest products - Home'
   },
 
  
@@ -26,7 +30,9 @@ export const routes: Routes = [
     path: 'products/:id',
     loadComponent: () =>
       import('./features/products/product-details/product-details.component')
-        .then(m => m.ProductDetailsComponent)
+        .then(m => m.ProductDetailsComponent),
+        title: `Product Details`
+        
   },
 
   
